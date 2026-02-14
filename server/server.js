@@ -15,12 +15,11 @@ connectDB();
 const app = express();
 
 /* -------------------- CORS CONFIG -------------------- */
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true
-  })
-);
+app.use(cors({
+  origin: "https://ticketing-saas.netlify.app",
+  credentials: true
+}));
+
 
 app.use(express.json());
 

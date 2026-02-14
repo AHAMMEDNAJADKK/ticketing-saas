@@ -1,5 +1,16 @@
-import { io } from "socket.io-client";
+import axios from "axios";
 
-const socket = io("http://localhost:5000");
+const API = axios.create({
+  baseURL: import.meta.env.VITE_API_URL
+});
 
-export default socket;
+// Attach token automatically
+API.interceptors.request.use((req) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    req.headers.Authorization = `Bearer ${token}`;
+  }
+  return req;
+});
+
+export default API;
